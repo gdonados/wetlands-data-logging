@@ -3,7 +3,7 @@
  *
  * Manages operations related to saving .csv data to SD card storage
  *
- * Timestamp data is temporary based on milliseconds since program start
+ * Timestamp data is temporarily based on milliseconds since program start
  * Recommend improving functionality with RTC capacbilities
  */
 
