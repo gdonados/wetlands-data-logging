@@ -1,14 +1,14 @@
 /**
- * Main program for remote data logging
- *
- * Remove all references to DHT sensor for production
- */
+   Main program for remote data logging
+
+   Remove all references to DHT sensor for production
+*/
 
 #include "Logging.h"
 
 #define POTPIN 4 // Testing with potentiometer
 
-char *file_name = "/data.csv";
+char *file_name; //= "/data.csv";
 char input[100];
 Logging logger;
 
@@ -26,6 +26,15 @@ void setup()
     information.sample_number = 0;
     information.battery_level = 5;
 
+    int i = 1;
+    snprintf(file_name, sizeof(char) * 32, "/data%i.csv", i); // Simple naming structure to start, increments file numbering by 1 on each startup
+    bool fileExists = logger.checkFileExists(SD, file_name);
+    while (fileExists)
+    {
+        i++;
+        snprintf(file_name, sizeof(char) * 32, "/data%i.csv", i);
+        fileExists = logger.checkFileExists(SD, file_name);
+    }
     logger.createFile(SD, file_name);
     logger.writeFile(SD, file_name, "Timestamp, Samp. Num, Measurement\n"); // Change to final headers in production
 }

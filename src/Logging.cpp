@@ -32,8 +32,8 @@ void Logging::removeFile(fs::FS &fs, char *path)
 }
 
 /**
- * Appends to a created file
- */
+   Appends to a created file
+*/
 void Logging::writeFile(fs::FS &fs, char *path, char *content)
 {
     Serial.printf("Writing to file: %s\n", path);
@@ -78,4 +78,20 @@ void Logging::readFile(fs::FS &fs, char *path)
     }
 
     file.close();
+}
+
+bool checkFileExists(fs::FS &fs, char *path)
+{
+    Serial.printf("Checking if file exists: %s\n", path);
+
+    File file = fs.open(path, FILE_READ);
+
+    if (!file)
+    {
+        Serial.printf("File does not exist\n", path);
+        return false;
+    }
+
+    file.close();
+    return true;
 }
