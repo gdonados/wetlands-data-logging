@@ -80,7 +80,7 @@ void Logging::readFile(fs::FS &fs, char *path)
   file.close();
 }
 
-bool checkFileExists(fs::FS &fs, char *path)
+bool Logging::checkFileExists(fs::FS &fs, char *path)
 {
   Serial.printf("Checking if file exists: %s\n", path);
 

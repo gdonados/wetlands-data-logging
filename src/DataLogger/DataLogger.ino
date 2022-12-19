@@ -8,7 +8,7 @@
 
 #define POTPIN  4 //Testing with potentiometer
 
-char * file_name; //= "/data.csv";
+char file_name[32]; //= "/data.csv";
 char input[100];
 Logging logger;
 
@@ -27,13 +27,13 @@ void setup()
   information.battery_level = 5;
 
   int i = 1;
-  snprintf(file_name, sizeof(char) * 32, "/data%i.csv", i); //Simple naming structure to start, increments file numbering by 1 on each startup
-  bool fileExists = logger.checkFileExists(SD, file_name);
-  while (fileExists)
+  sprintf_P(file_name, "/data%i.csv", i); //Simple naming structure to start, increments file numbering by 1 on each startup
+  Serial.println(file_name);
+  while (SD.exists(file_name))
   {
     i++;
-    snprintf(file_name, sizeof(char) * 32, "/data%i.csv", i);
-    fileExists = logger.checkFileExists(SD, file_name);
+    sprintf_P(file_name, "/data%i.csv", i);
+    //fileExists = logger.checkFileExists(SD, file_name);
   }
   logger.createFile(SD, file_name);
   logger.writeFile(SD, file_name, "Timestamp, Samp. Num, Measurement\n"); //Change to final headers in production
