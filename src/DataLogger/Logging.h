@@ -30,5 +30,3 @@ struct
   int sample_number;
   int battery_level;
 } information;
-
-//char FILE_NAME_STRUCTURE = "/data%i.csv";
