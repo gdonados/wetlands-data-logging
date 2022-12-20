@@ -15,3 +15,13 @@ Once all necessary sensors are acquired, and more dedicated circuitry is built, 
 If any new information needs to be tracked, updating the 'information' struct in the 'Logger.h' file is recommended to keep the core data organized.  
   
 Currently, the project is mainly run out of the `DataLogger` directory to work smoothly with the Arduino IDE tools.
+
+## Pinouts
+| ESP32 | SD Breakout |
+|:-----:|:-----------:|
+|  D23  |      DI     |
+|  D19  |      DO     |
+|  D18  |     CLK     |
+|   D5  |      CS     |  
+
+D1 used for potentiometer input testing.
